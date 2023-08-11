@@ -1,4 +1,3 @@
-import React from "react";
 import { Image } from "antd";
 import Carousel from "react-bootstrap/Carousel";
 

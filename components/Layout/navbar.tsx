@@ -1,16 +1,25 @@
-import React, { useState } from "react";
-import { MaterialSymbolsDirectionsCarOutline } from "../assets/Caricon";
 import Link from "next/link";
+import Image from "next/image";
 import { Input, Menu, MenuProps, MenuTheme, Switch } from "antd";
-import { BuyIcon } from "../assets/BuyIcon";
+import { useState } from "react";
 import { AdviceIcon } from "../assets/AdviceIcon";
+import { BuyIcon } from "../assets/BuyIcon";
+import { MaterialSymbolsDirectionsCarOutline } from "../assets/Caricon";
 import { ServiceIcon } from "../assets/ServiceIcon";
 
 const { Search } = Input;
 
 export const items: MenuProps["items"] = [
   {
-    label: "Các dòng xe",
+    label: (
+      <Link
+        href="/details/CarDetail"
+        rel="noopener noreferrer"
+        style={{ textDecoration: "none" }}
+      >
+        Các dòng xe
+      </Link>
+    ),
     key: "type",
     icon: <MaterialSymbolsDirectionsCarOutline />,
   },
@@ -67,6 +76,7 @@ export const items: MenuProps["items"] = [
         href="https://www.mercedes-benz.com.vn/?group=all&subgroup=all.saloon&view=BODYTYPE"
         target="_blank"
         rel="noopener noreferrer"
+        style={{ textDecoration: "none" }}
       >
         Thế giới Mercedes
       </a>
@@ -79,10 +89,9 @@ const Navbar = () => {
   const onSearch = (value: string) => console.log(value);
 
   const [current, setCurrent] = useState("type");
-  const [theme, setTheme] = useState<MenuTheme>("dark");
+  const [theme, setTheme] = useState<MenuTheme>("light");
 
   const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
 
@@ -102,21 +111,36 @@ const Navbar = () => {
           justifyContent: "space-between",
         }}
       >
-        <Link
-          href="/"
-          className="text-decoration-none"
-          style={{
-            display: "flex",
-          }}
-        >
-          <img style={{ maxWidth: "15%" }} src="/logo.png" />
-          <p
-            className="text-light"
-            style={{ alignItems: "center", margin: 10, display: "flex" }}
+        <div>
+          <Link
+            href="/"
+            className="text-decoration-none"
+            style={{
+              display: "flex",
+            }}
           >
-            Mercedes Benz
-          </p>
-        </Link>
+            <Image
+              src="/logo.png"
+              alt="..."
+              width={120}
+              height={120}
+              style={{ maxWidth: "60%", maxHeight: "60%" }}
+            />
+            <div
+              style={{
+                margin: 10,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
+            >
+              <p className="text-light">Mercedes Benz</p>
+              <h6 className="text-light " style={{ fontSize: "12px" }}>
+                © 2022. Mercedes-Benz AG. Bảo lưu mọi quyền (Thông tin xuất bản)
+              </h6>
+            </div>
+          </Link>
+        </div>
         <div
           style={{
             display: "flex",
@@ -125,9 +149,6 @@ const Navbar = () => {
             gap: 15,
           }}
         >
-          <h6 className="text-light" style={{ fontSize: "12px" }}>
-            © 2022. Mercedes-Benz AG. Bảo lưu mọi quyền (Thông tin xuất bản)
-          </h6>
           <Search
             placeholder="Từ khoá tìm kiếm / OnlineCode từ công cụ chọn cấu hình xe"
             onSearch={onSearch}
@@ -135,6 +156,8 @@ const Navbar = () => {
             allowClear
           />
           <Switch
+            // className="d-block d-lg-none"
+            className="d-none d-lg-block"
             style={{ display: "flex", alignItems: "center" }}
             checked={theme === "dark"}
             onChange={changeTheme}
@@ -160,8 +183,6 @@ const Navbar = () => {
           style={{
             display: "flex",
             justifyContent: "center",
-            // backgroundColor: "black",
-            // color: "white",
           }}
           theme={theme}
           items={items}

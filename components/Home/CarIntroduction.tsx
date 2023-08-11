@@ -10,6 +10,8 @@ const CarIntroduction = () => {
           top: "15%",
           left: "15%",
           transform: "translate(-50%, -50%)",
+          // maxWidth: "150px",
+          maxHeight: "5%",
         }}
       >
         <h3 className="text-light">Lựa chọn là của bạn</h3>

@@ -1,7 +1,9 @@
-import Stack from "react-bootstrap/Stack";
-import CarSlideShow from "./components/Home/CarSlideShow";
-import CarIntroduction from "./components/Home/CarIntroduction";
 import Head from "next/head";
+import Stack from "react-bootstrap/Stack";
+import CarCard from "../../components/Home/CarCard";
+import CarIntroduction from "../../components/Home/CarIntroduction";
+import CarSlideShow from "../../components/Home/CarSlideShow";
+import CarType from "../../components/Home/CarType";
 
 export default function Home() {
   return (
@@ -13,9 +15,9 @@ export default function Home() {
       <main>
         <Stack>
           <CarSlideShow />
-          <div style={{ backgroundColor: "black" }}>
-            <CarIntroduction />
-          </div>
+          <CarIntroduction />
+          <CarCard />
+          <CarType />
         </Stack>
       </main>
     </div>
